@@ -10,7 +10,7 @@
             <div class="ms-5 ms-md-0 pt-md-3 pb-md-0">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/"><i class="bi-house-fill text-success"></i></a></li>
+                        <li class="breadcrumb-item"><a href="/ems_antrian/"><i class="bi-house-fill text-success"></i></a></li>
                         <li class="breadcrumb-item text-muted" aria-current="page">Setting Antrian</li>
                     </ol>
                 </nav>

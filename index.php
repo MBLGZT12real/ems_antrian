@@ -54,8 +54,8 @@
 				case "setting":
 					include 'pages/setting/index.php';
 					break;
-				case "nomor":
-					include 'pages/nomor/index.php';
+				case "rekapitulasi":
+					include 'pages/rekapitulasi/index.php';
 					break;
 				case "panggilan":
 					include 'pages/panggilan/index.php';

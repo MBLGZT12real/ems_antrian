@@ -16,13 +16,13 @@ if (count($loket) > 0) {
             <!-- judul halaman -->
             <div class="d-flex align-items-center me-md-auto">
                 <i class="bi-mic-fill text-success me-3 fs-3"></i>
-                <h1 class="fw-bold h5 pt-2">PANGGILAN ANTRIAN <span class="namaLoket"></span></h1>
+                <h1 class="fw-bold h5 pt-2">PANGGILAN ANTRIAN - <span class="namaLoket"></span></h1>
             </div>
             <!-- breadcrumbs -->
             <div class="ms-5 ms-md-0 pt-md-3 pb-md-0">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/"><i class="bi-house-fill text-success"></i></a></li>
+                        <li class="breadcrumb-item"><a href="/ems_antrian/"><i class="bi-house-fill text-success"></i></a></li>
                         <li class="breadcrumb-item text-muted" aria-current="page">Panggilan Antrian</li>
                     </ol>
                 </nav>

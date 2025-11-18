@@ -44,7 +44,7 @@
 		
         <div class="row gx-3 text-center">
             <!-- link halaman nomor antrian -->
-            <div class="col-sm-6 mb-3">
+            <!--<div class="col-sm-6 mb-3">
                 <div class="card border border-success shadow-sm">
                     <div class="card-body p-3">
                         <div class="feature-icon-3 bg-success bg-gradient mb-3">
@@ -53,6 +53,21 @@
                         <h4 class="fw-bold">NOMOR ANTRIAN</h4>
                         <p class="mb-3">Halaman Nomor Antrian digunakan pengunjung untuk mengambil nomor antrian.</p>
                         <a href="index.php?pages=nomor" class="btn btn-success px-4 py-2">
+                            TAMPILKAN <i class="bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>-->
+            <!-- link halaman rekapitulasi antrian -->
+            <div class="col-sm-6 mb-3">
+                <div class="card border border-success shadow-sm">
+                    <div class="card-body p-3">
+                        <div class="feature-icon-3 bg-success bg-gradient mb-3">
+                            <i class="bi-people"></i>
+                        </div>
+                        <h4 class="fw-bold">REKAP ANTRIAN</h4>
+                        <p class="mb-3">Halaman Rekap Antrian digunakan petugas untuk rekap nomor antrian.</p>
+                        <a href="index.php?pages=rekapitulasi" class="btn btn-success px-4 py-2">
                             TAMPILKAN <i class="bi-arrow-right ms-2"></i>
                         </a>
                     </div>
