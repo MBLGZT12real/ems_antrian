@@ -20,6 +20,53 @@ class query extends database
 		
 	}
 
+    public function formatAndValidatePhone($phone, $countryCode = "IDN") {
+		// Hapus semua karakter selain angka
+		$phone = trim($phone);
+		$phone = preg_replace('/[^0-9]/', '', $phone);
+
+		// Hilangkan 0 paling depan
+		if (substr($phone, 0, 1) === '0') {
+			$phone = substr($phone, 1);
+		}
+
+        // Hilangkan 62 paling depan
+        if (substr($phone, 0, 2) === '62') {
+			$phone = substr($phone, 2);
+		}
+
+		// Ambil kode negara dari DB
+		$countryCode = mysqli_real_escape_string($this->mysqli, $countryCode);
+		$result = mysqli_query($this->mysqli,
+			"SELECT phone_code FROM tb_country WHERE cur_code = '$countryCode' LIMIT 1"
+		);
+
+		if (!$result || mysqli_num_rows($result) == 0) {
+			return false; // Negara tidak ditemukan
+		}
+
+		$row = mysqli_fetch_assoc($result);
+		$phone_code = $row['phone_code']; // contoh: 62
+
+		// Gabungkan nomor akhir TANPA +
+		$normalized = $phone_code . $phone;
+
+		// Validasi: angka semua
+		if (!preg_match('/^\d+$/', $normalized)) {
+			return false;
+		}
+
+		// Validasi panjang subscriber
+		$subscriber = substr($normalized, strlen($phone_code));
+		$len = strlen($subscriber);
+
+		if ($len < 6 || $len > 15) {
+			return false;
+		}
+
+		return $normalized;
+	}
+
     public function getSetting()
     {
         $query = mysqli_query($this->mysqli, "SELECT * FROM queue_setting ORDER BY id DESC LIMIT 1") or die('Ada kesalahan pada query tampil data : ' . mysqli_error($this->mysqli));

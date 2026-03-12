@@ -17,10 +17,14 @@ if (isset($_POST['type'])) {
 	if ($_POST['type'] == 'save') {
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				$countryCode = "IDN";
+        		$phone_raw = $_POST['telepon'];
+				$phoneFormatted = $action->formatAndValidatePhone($phone_raw, $countryCode);
+
 				$cPanggilan	= $action->escsql($_POST['panggilan']);
 				$cFullname 	= $action->escsql($_POST['fullname']);
 				$cCompany 	= $action->escsql($_POST['company']);
-				$nTelepon 	= $_POST['telepon'];
+				$nTelepon 	= $phoneFormatted;
 				$cEmail 	= $action->escsql($_POST['email']);
 				$nTotal 	= $_POST['total'];
 				$lTypeAntri = $_POST['typeantri'];

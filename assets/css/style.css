@@ -64,6 +64,18 @@ body {
   border-color: #33b249;
 }
 
+.is-invalid { border-color: #dc3545 !important; }
+.invalid-feedback {
+	color: #dc3545;
+	font-size: 13px;
+	margin-top: 2px;
+}
+.select-container--default .select-selection--single,
+.select-container--default .select-selection--multiple {
+	border-radius: 4px;
+	min-height: 34px;
+}
+
 .border-success {
   border-color: #33b249 !important;
 }
