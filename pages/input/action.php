@@ -30,6 +30,7 @@ if (isset($_POST['type'])) {
 				$lTypeAntri = $_POST['typeantri'];
 				$lKirimVia 	= $_POST['kirimvia'];
 				$cIPAddrs 	= $_SERVER['REMOTE_ADDR'];
+				$cTransId	= $action->generateUUID();
 				
 				$query = $action->getLastAntrianByType($lTypeAntri);
 				// Ambil hasil query
@@ -42,7 +43,7 @@ if (isset($_POST['type'])) {
 					$nAntrian = sprintf("%04s", 1);
 				}
 				
-				$save = $action->createAntrianNew($lTypeAntri, $nAntrian, $cPanggilan, $cFullname, $cCompany, $nTelepon, $cEmail, $nTotal, $lKirimVia, $cIPAddrs);
+				$save = $action->createAntrianNew($lTypeAntri, $nAntrian, $cPanggilan, $cFullname, $cCompany, $nTelepon, $cEmail, $nTotal, $lKirimVia, $cIPAddrs, $cTransId);
 				//$save = true;
 				if ($save) {
 					echo json_encode([

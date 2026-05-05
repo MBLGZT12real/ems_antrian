@@ -67,6 +67,34 @@ class query extends database
 		return $normalized;
 	}
 
+    ///Generate unique Order ID (36 char)///
+    public function generateUUID() 
+    {
+		// Menghasilkan 16 bytes data acak yang aman
+		$data = random_bytes(16);
+
+		// Set bit untuk versi 4 (UUID v4)
+		$data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+		// Set bit untuk varian RFC 4122
+		$data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+		// Format menjadi string 36 karakter (8-4-4-4-12)
+        $randStr = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+
+        // 2. Validasi ke Database
+        $refer = "SELECT trans_id FROM queue_antrian_admisi WHERE trans_id = '" . $randStr . "' LIMIT 1";
+        
+        // Pastikan $this->mysqli sudah terdefinisi di constructor/class
+        $coderefertest = mysqli_query($this->mysqli, $refer) or die(mysqli_error($this->mysqli));
+        
+		if (mysqli_num_rows($coderefertest) > 0) {
+			// Jika ID sudah ada, jalankan ulang fungsi (rekursif)
+			return $this->generateUUID();
+		} else {
+			// Jika ID unik, kembalikan stringnya
+			return $randStr;
+		}
+	}
+
     public function getSetting()
     {
         $query = mysqli_query($this->mysqli, "SELECT * FROM queue_setting ORDER BY id DESC LIMIT 1") or die('Ada kesalahan pada query tampil data : ' . mysqli_error($this->mysqli));
@@ -109,10 +137,10 @@ class query extends database
         return $query;
     }
 	
-	public function createAntrianNew($lTypeAntri, $nAntrian, $cPanggilan, $cFullname, $cCompany, $nTelepon, $cEmail, $nTotal, $lKirimVia, $cIPAddrs)
+	public function createAntrianNew($lTypeAntri, $nAntrian, $cPanggilan, $cFullname, $cCompany, $nTelepon, $cEmail, $nTotal, $lKirimVia, $cIPAddrs, $cTransId)
     {
 		$id_antrian = $lTypeAntri.$nAntrian;
-        $query = mysqli_query($this->mysqli, "INSERT INTO queue_antrian_admisi(tanggal, id_antrian, code_antrian, no_antrian, name_antrian, fullname_antrian, comp_antrian, no_wa, email, total_cetak, kirim_via, ip_addrs) VALUES('$this->tanggal', '$id_antrian', '$lTypeAntri', '$nAntrian', '$cPanggilan', '$cFullname', '$cCompany', '$nTelepon', '$cEmail', '$nTotal', '$lKirimVia', '$cIPAddrs')") or die('Ada kesalahan pada query insert: ' . mysqli_error($this->mysqli));
+        $query = mysqli_query($this->mysqli, "INSERT INTO queue_antrian_admisi(tanggal, id_antrian, code_antrian, no_antrian, name_antrian, fullname_antrian, comp_antrian, no_wa, email, total_cetak, kirim_via, ip_addrs, trans_id) VALUES('$this->tanggal', '$id_antrian', '$lTypeAntri', '$nAntrian', '$cPanggilan', '$cFullname', '$cCompany', '$nTelepon', '$cEmail', '$nTotal', '$lKirimVia', '$cIPAddrs', '$cTransId')") or die('Ada kesalahan pada query insert: ' . mysqli_error($this->mysqli));
         return $query;
     }
 	
