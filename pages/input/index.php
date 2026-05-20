@@ -23,8 +23,8 @@
 								<input type="text" class="form-control" id="fullname" name="fullname" placeholder="Nama Lengkap Anda (Maks 25)" maxlength="25" pattern="[A-Za-z0-9 .,\/\-]+" required>
 							</div>
 							<div class="mb-3">
-								<label for="company" class="form-label">Brand/Perusahaan *</label>
-								<input type="text" class="form-control" id="company" name="company" placeholder="Nama Lengkap Anda (Maks 25)" maxlength="25" pattern="[A-Za-z0-9 .,\/\-]+" required>
+								<label for="company" class="form-label">Brand/Perusahaan*</label>
+								<input type="text" class="form-control" id="company" name="company" placeholder="Nama Brand Peserta Event (Maks 25)" maxlength="25" pattern="[A-Za-z0-9 .,\/\-]+" required>
 							</div>
 							<div class="row">
 								<div class="form-group col-6">
