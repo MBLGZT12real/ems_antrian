@@ -13,8 +13,16 @@
             $data = [];
         }
         ?>
+        <?php if (!isset($_SESSION['staff_auth'])) : ?>
+            <?php include __DIR__ . '/pages/staff_login.php'; ?>
+        <?php else : ?>
         <!-- tampilkan pesan selamat datang -->
         <div class="alert alert-light border border-success mb-3 mt-3" role="alert">
+            <div class="d-flex justify-content-end mb-2">
+                <a href="index.php?logout_staff=1" class="btn btn-sm btn-outline-danger">
+                    <i class="bi-box-arrow-right"></i> Logout
+                </a>
+            </div>
             <div class="text-center">
                 <img src="<?= $data['logo'] && file_exists('assets/img/' . $data['logo']) ? 'assets/img/' . $data['logo'] : 'assets/img/default.png' ?>" alt="Logo" width="60px" class="">
                 <h4 class="mt-2 mb-0 fw-bold"><?= $data['nama_instansi'] ? $data['nama_instansi'] : ''; ?></h4>
@@ -149,4 +157,5 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </main>

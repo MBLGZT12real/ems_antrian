@@ -4,6 +4,13 @@
 	// error_reporting(E_ALL);
 	require_once "config/query.php";
 	session_start();
+
+	if (isset($_GET['logout_staff'])) {
+		unset($_SESSION['staff_auth']);
+		header("Location: index.php");
+		exit;
+	}
+
 	$action = new config\query;
 	$query = $action->getSetting();
 	// ambil jumlah baris data hasil query
@@ -19,6 +26,12 @@
 		$url = $_GET['pages'];
 	} else {
 		$url = '';
+	}
+
+	$staffOnlyPages = ['monitor', 'panggilan', 'rekapitulasi'];
+	if (in_array($url, $staffOnlyPages) && !isset($_SESSION['staff_auth'])) {
+		header("Location: index.php");
+		exit;
 	}
 ?>
 <!doctype html>

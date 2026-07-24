@@ -20,6 +20,25 @@
 	}
 	
 	$(document).ready(function () {
+		// ==== MANDATORY INFO (tidak bisa ditutup sebelum klik OK) ====
+		Swal.fire({
+			title: 'Noted:',
+			html: `
+				<ol class="text-start ps-3 mb-0">
+					<li><strong>Satu (1) QR e-Voucher ID-Card</strong> hanya untuk <strong>Satu (1) Nomor Antrian</strong></li>
+					<li>Semua penukaran/produksi harus dilakukan di <strong>ID-Card Room dengan QR e-Voucher ID-Card</strong></li>
+					<li>Kehilangan, Kerusakan dan Hal lain yang diakibatkan oleh pemegang/pengguna ID-Card harus cetak <strong>ID-Card baru dengan QR e-Voucher ID-Card baru</strong>.</li>
+				</ol>
+			`,
+			icon: 'warning',
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			showCloseButton: false,
+			showCancelButton: false,
+			confirmButtonColor: "#3085d6",
+			confirmButtonText: "Saya Mengerti"
+		});
+
 		// ==== REGEX ====
 		const regexText = /^[A-Za-z0-9\s.,\/-]+$/;
 		const regexNumber = /^[0-9]+$/;

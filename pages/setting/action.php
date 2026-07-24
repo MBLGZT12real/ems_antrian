@@ -142,7 +142,7 @@ if (isset($_POST['type'])) {
 
     if ($_POST['type'] == 'logout') {
         session_start();
-        session_destroy();
+        unset($_SESSION['username']);
         echo json_encode([
             'success' => true,
             'message' => 'Success'
