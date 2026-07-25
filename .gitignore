@@ -1,1 +1,15 @@
-/config/env.php
+# Abaikan semua file di dalam folder ini...
+config/env.php
+
+# 1. Abaikan semua file dan folder di dalam gambar_kategori
+assets/img/**
+
+# 2. TAPI jangan abaikan struktur foldernya agar Git bisa memeriksa ke dalam
+!assets/img/**/
+
+# 3. TAPI jangan abaikan file bernama .gitkeep
+!assets/img/**/.gitkeep
+
+# ...KECUALI file .gitkeep (Jangan biarkan Git menghapusnya!)
+!**/.*keep
+!**/.gitkeep

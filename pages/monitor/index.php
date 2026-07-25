@@ -23,10 +23,13 @@ function hariIndo($hariInggris)
     }
 }
 $list_type_antrian = (!empty($data['list_type_antrian'])) ? json_decode($data['list_type_antrian'], true) : [];
+$sliderImages = glob('assets/img/slider/Slider*.png');
+natsort($sliderImages);
+$sliderImages = array_values($sliderImages);
 ?>
 <main class="flex-shrink-0">
     <div class="d-flex justify-content-between align-items-center px-3" style="height: 9vh; background-color:<?= $data['warna_primary'] ? $data['warna_primary'] : '#6B5935' ?>;">
-        <img class="img-fluid d-block" src="<?= $data['logo'] && file_exists('assets/img/' . $data['logo']) ? 'assets/img/' . $data['logo'] : 'assets/img/default.png' ?>" alt="Image" class="mr-3" style="max-width: 50px; margin-left:5px;">
+        <img id="logoSlider" class="img-fluid d-block" src="<?= $data['logo'] && file_exists('assets/img/' . $data['logo']) ? 'assets/img/' . $data['logo'] : 'assets/img/default.png' ?>" alt="Image" class="mr-3" style="max-width: 50px; margin-left:5px; cursor: pointer;">
         <div class="text-white text-center">
             <h4 class="nama-instansi fw-bold"><?= $data['nama_instansi'] ? $data['nama_instansi'] : ''; ?></h4>
             <h5 class="fw-lighter m-1">
@@ -103,6 +106,23 @@ $list_type_antrian = (!empty($data['list_type_antrian'])) ? json_decode($data['l
             <?php $key_bg++; ?>
         <?php endforeach; ?>
     <?php endif; ?>
+    </div>
+
+    <!-- overlay slider gambar, muncul saat logo diklik -->
+    <div id="sliderOverlay" class="slider-overlay">
+        <?php foreach ($sliderImages as $index => $sliderImage) : ?>
+            <img src="<?= $sliderImage; ?>" class="slider-overlay-img<?= $index == 0 ? ' active' : ''; ?>" alt="Slider">
+        <?php endforeach; ?>
+
+        <?php if (count($sliderImages) > 1) : ?>
+            <button type="button" class="slider-nav slider-nav-prev" id="sliderPrev"><i class="bi-chevron-left"></i></button>
+            <button type="button" class="slider-nav slider-nav-next" id="sliderNext"><i class="bi-chevron-right"></i></button>
+            <div class="slider-dots" id="sliderDots">
+                <?php foreach ($sliderImages as $index => $sliderImage) : ?>
+                    <button type="button" class="slider-dot<?= $index == 0 ? ' active' : ''; ?>" data-index="<?= $index; ?>"></button>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </main>
 <!-- load file audio bell antrian -->

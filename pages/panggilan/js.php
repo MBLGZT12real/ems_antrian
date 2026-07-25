@@ -243,5 +243,15 @@
         setInterval(function() {
             get_actions();
         }, 1000);
+
+        // tombol istirahat, tampilkan overlay gambar istirahat
+        $('#btnIstirahat').on('click', function() {
+            $('#restOverlay').fadeIn();
+        });
+
+        // tombol open pada overlay istirahat, kembali ke tampilan panggilan
+        $('#btnOpenRest').on('click', function() {
+            $('#restOverlay').fadeOut();
+        });
     });
 </script>

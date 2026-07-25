@@ -16,7 +16,10 @@ if (count($loket) > 0) {
             <!-- judul halaman -->
             <div class="d-flex align-items-center me-md-auto">
                 <i class="bi-mic-fill text-success me-3 fs-3"></i>
-                <h1 class="fw-bold h5 pt-2">PANGGILAN ANTRIAN - <span class="namaLoket"></span></h1>
+                <h1 class="fw-bold h5 pt-2 mb-0">PANGGILAN ANTRIAN - <span class="namaLoket"></span></h1>
+                <button type="button" id="btnIstirahat" class="btn btn-sm btn-warning ms-3">
+                    <i class="bi-cup-hot-fill me-1"></i> ISTIRAHAT
+                </button>
             </div>
             <!-- breadcrumbs -->
             <div class="ms-5 ms-md-0 pt-md-3 pb-md-0">
@@ -30,6 +33,14 @@ if (count($loket) > 0) {
         </div>
 
         <div class="row justify-content-lg-center" id="table-panggilan"></div>
+    </div>
+
+    <!-- overlay istirahat, muncul saat tombol ISTIRAHAT diklik -->
+    <div id="restOverlay" class="rest-overlay">
+        <button type="button" id="btnOpenRest" class="btn btn-success rest-overlay-open">
+            <i class="bi-unlock-fill me-1"></i> OPEN
+        </button>
+        <img src="assets/img/slider/Rest.png" class="rest-overlay-img" alt="Istirahat">
     </div>
 </main>
 
